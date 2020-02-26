@@ -294,6 +294,9 @@ function get_platform() {
             ODROID-XU[34])
                 __platform="odroid-xu"
                 ;;
+			ODROID-GO2*)
+				__platform="odroid-go2"
+				;;
             "Rockchip (Device Tree)")
                 __platform="tinker"
                 ;;
@@ -393,6 +396,14 @@ function platform_odroid-xu() {
     __default_asflags=""
     __default_makeflags="-j2"
     __platform_flags="arm armv7 neon mali gles"
+}
+
+function platform_odroid-go2() {
+    __default_cflags="-O2"
+    __platform_flags="aarch64 neon gles"
+    __default_cflags+=""
+    __default_asflags=""
+    __default_makeflags="-j4"
 }
 
 function platform_tinker() {
