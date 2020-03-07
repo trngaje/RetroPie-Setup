@@ -17,7 +17,8 @@ rp_module_section="main"
 rp_module_flags=""
 
 function sources_lr-mgba() {
-    gitPullOrClone "$md_build" https://github.com/libretro/mgba.git
+#    gitPullOrClone "$md_build" https://github.com/libretro/mgba.git
+    gitPullOrClone "$md_build" https://github.com/OtherCrashOverride/mgba-libretro-go2.git
 }
 
 function build_lr-mgba() {
