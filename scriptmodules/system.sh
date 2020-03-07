@@ -400,10 +400,9 @@ function platform_odroid-xu() {
 
 function platform_odroid-go2() {
     __default_cflags="-O2"
-    __platform_flags="aarch64 neon gles"
-    __default_cflags+=""
-    __default_asflags=""
-    __default_makeflags="-j4"
+    __platform_flags="arm aarch64 gles"
+    __default_asflags=""	
+    __default_makeflags="-j2"
 }
 
 function platform_tinker() {
