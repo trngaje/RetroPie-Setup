@@ -27,11 +27,11 @@ function _update_hook_advmame() {
 
 function depends_advmame() {
     local depends=(autoconf automake)
-    if isPlatform "videocore"; then
-        depends+=(libsdl1.2-dev libraspberrypi-dev)
-    else
+#    if isPlatform "videocore"; then
+#        depends+=(libsdl1.2-dev libraspberrypi-dev)
+#    else
         depends+=(libsdl2-dev)
-    fi
+#    fi
     getDepends "${depends[@]}"
 }
 
@@ -41,11 +41,11 @@ function sources_advmame() {
 
 function build_advmame() {
     local params=()
-    if isPlatform "videocore"; then
-        params+=(--enable-sdl1 --disable-sdl2 --enable-vc)
-    else
+#    if isPlatform "videocore"; then
+#        params+=(--enable-sdl1 --disable-sdl2 --enable-vc)
+#    else
         params+=(--enable-sdl2 --disable-sdl1 --disable-vc)
-    fi
+#    fi
     ./autogen.sh
     ./configure CFLAGS="$CFLAGS -fno-stack-protector" --prefix="$md_inst" "${params[@]}"
     make clean
