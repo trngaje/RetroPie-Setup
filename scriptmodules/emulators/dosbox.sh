@@ -88,8 +88,10 @@ function midi_synth() {
     case "\$1" in
         "start")
             timidity -Os -iAD &
-            until [[ -n "\$(aconnect -o | grep TiMidity)" ]]; do
+            i=0
+            until [[ -n "\$(aconnect -o | grep TiMidity)" || "\$i" -ge 10 ]]; do
                 sleep 1
+                ((i++))
             done
             ;;
         "stop")
@@ -102,7 +104,7 @@ function midi_synth() {
 
 params=("\$@")
 if [[ -z "\${params[0]}" ]]; then
-    params=(-c "@MOUNT C $romdir/pc" -c "@C:")
+    params=(-c "@MOUNT C $romdir/pc -freesize 1024" -c "@C:")
 elif [[ "\${params[0]}" == *.sh ]]; then
     midi_synth start
     bash "\${params[@]}"
